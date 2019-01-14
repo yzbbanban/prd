@@ -23,7 +23,6 @@ public class AreaServiceImpl implements IAreaService {
     @Autowired
     private AreaDao areaDao;
 
-
     @Override
     @CacheEvict(value = "area", key = "getAreaList()", allEntries = true)
     public List<Area> getAreaList() {
