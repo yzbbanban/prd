@@ -27,7 +27,7 @@ public class Swagger2 {
 
     private Tag[] getTags() {
         Tag[] tags = {
-            new Tag("test", "测试服务"),
+                new Tag("test", "测试服务"),
         };
         return tags;
     }
@@ -55,10 +55,10 @@ public class Swagger2 {
     }
 
     private ApiInfo apiInfo() {
-        Contact contact = new Contact("pl", "", "");
-        return new ApiInfoBuilder().title("pl 列表")
+        Contact contact = new Contact("ban", "", "yzbbanban@live.com");
+        return new ApiInfoBuilder().title("pl 接口列表")
                 .description("API调用")
-                .termsOfServiceUrl("http://www.pl.com/")
+                .termsOfServiceUrl("http://www.yzbbanban.com/")
                 .contact(contact)
                 .version("1.0")
                 .build();

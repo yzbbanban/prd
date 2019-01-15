@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pl.dao.IpMessageDao">
+
+    <sql id="baseResult">
+        id,ip,count,createTime,updateTime,remark,status
+    </sql>
+
+    <select id="listIpMessage" resultType="com.pl.domain.vo.IpMessageVO">
+        SELECT
+        <include refid="baseResult"></include>
+        FROM ip_message
+        ORDER BY updateTime DESC
+        Limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="integer">
+        SELECT
+        count(1)
+        FROM ip_message
+    </select>
+
+    <insert id="addIp">
+        INSERT INTO ip_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            createTime,
+            updateTime,
+            `count`,
+            status
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="ip != null">
+                #{ip,jdbcType=VERCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VERCHAR},
+            </if>
+            unix_timestamp(NOW()),
+            unix_timestamp(NOW()),
+            0,
+            1
+        </trim>
+    </insert>
+
+    <update id="updateIp">
+        UPDATE ip_message
+        SET
+        <trim suffixOverrides=",">
+            <if test="ip != null">
+                `ip` = #{ip},
+            </if>
+            <if test="count != null">
+                `count` = #{count},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="remark != null">
+                `remark` = #{remark},
+            </if>
+            `updateTime` = unix_timestamp(NOW()),
+        </trim>
+        WHERE
+        `id` = #{id}
+    </update>
+
+
+</mapper>
