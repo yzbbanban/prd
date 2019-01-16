@@ -13,6 +13,8 @@
         <include refid="baseResult"></include>
         FROM ip_record
         ORDER BY updateTime DESC
+        WHERE ipId=#{id}
+        Limit #{pageNo},#{pageSize}
     </select>
 
     <select id="getCount" resultType="integer">

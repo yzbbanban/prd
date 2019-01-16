@@ -46,10 +46,10 @@
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="ip != null">
-                #{ip,jdbcType=VERCHAR},
+                #{ip},
             </if>
             <if test="remark != null">
-                #{remark,jdbcType=VERCHAR},
+                #{remark},
             </if>
             unix_timestamp(NOW()),
             unix_timestamp(NOW()),

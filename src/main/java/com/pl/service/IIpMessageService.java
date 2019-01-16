@@ -1,5 +1,7 @@
 package com.pl.service;
 
+import com.pl.domain.dto.IpRecordPageParamDTO;
+import com.pl.domain.dto.IpRecordUpdateDTO;
 import com.pl.domain.dto.PageParamDTO;
 import com.pl.domain.vo.IpMessageDTO;
 import com.pl.domain.vo.IpMessageUpdateDTO;
@@ -53,5 +55,27 @@ public interface IIpMessageService {
     String getIp(String deviceId);
 
 
+    /**
+     * 更新 ip 记录信息
+     *
+     * @param updateDTO 更新信息
+     * @return true 成功
+     */
+    boolean updateIpRecord(IpRecordUpdateDTO updateDTO);
 
+    /**
+     * 获取 ip 的领用记录
+     *
+     * @param id ip id
+     * @return 记录
+     */
+    int getIpRecordCount(Integer id);
+
+    /**
+     * 获取 ip 的领用记录
+     *
+     * @param pageParamDTO ip id
+     * @return 记录
+     */
+    List<IpRecordVO> getIpRecordList(IpRecordPageParamDTO pageParamDTO);
 }

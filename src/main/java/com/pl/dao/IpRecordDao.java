@@ -1,6 +1,7 @@
 package com.pl.dao;
 
 import com.pl.domain.dto.IpRecordDTO;
+import com.pl.domain.dto.IpRecordPageParamDTO;
 import com.pl.domain.dto.IpRecordUpdateDTO;
 import com.pl.domain.vo.IpMessageVO;
 import com.pl.domain.vo.IpRecordVO;
@@ -15,10 +16,10 @@ public interface IpRecordDao {
     /**
      * 获取ip记录 列表
      *
-     * @param ip ip
+     * @param dto ip 信息
      * @return ip 列表
      */
-    List<IpRecordVO> listIpRecordMessage(String ip);
+    List<IpRecordVO> listIpRecordMessage(IpRecordPageParamDTO dto);
 
     /**
      * 获取数量

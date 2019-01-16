@@ -3,20 +3,19 @@ package com.pl.service.impl;
 import com.pl.dao.IpMessageDao;
 import com.pl.dao.IpRecordDao;
 import com.pl.domain.dto.IpRecordDTO;
+import com.pl.domain.dto.IpRecordPageParamDTO;
+import com.pl.domain.dto.IpRecordUpdateDTO;
 import com.pl.domain.dto.PageParamDTO;
-import com.pl.domain.orm.IpMessage;
-import com.pl.domain.orm.IpRecord;
 import com.pl.domain.vo.IpMessageDTO;
 import com.pl.domain.vo.IpMessageUpdateDTO;
 import com.pl.domain.vo.IpMessageVO;
 import com.pl.domain.vo.IpRecordVO;
 import com.pl.service.IIpMessageService;
-
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by brander on 2019/1/16
@@ -104,5 +103,26 @@ public class IpMessageServiceImpl implements IIpMessageService {
             return ipVO.getIp();
         }
         return null;
+    }
+
+    /**
+     * 更新 ip 记录信息
+     *
+     * @param updateDTO 更新信息
+     * @return true 成功
+     */
+    @Override
+    public boolean updateIpRecord(IpRecordUpdateDTO updateDTO) {
+        return ipRecordDao.updateIpRecord(updateDTO) > 0;
+    }
+
+    @Override
+    public int getIpRecordCount(Integer id) {
+        return ipRecordDao.getCount();
+    }
+
+    @Override
+    public List<IpRecordVO> getIpRecordList(IpRecordPageParamDTO pageParamDTO) {
+        return ipRecordDao.listIpRecordMessage(pageParamDTO);
     }
 }
