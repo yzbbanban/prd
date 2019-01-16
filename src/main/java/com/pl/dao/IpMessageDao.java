@@ -44,4 +44,12 @@ public interface IpMessageDao {
      */
     int updateIp(IpMessageUpdateDTO ipMessageUpdateDTO);
 
+    /**
+     * 获取 count 最小的 ip
+     *
+     * @return ip 信息
+     */
+    IpMessageVO getMinCountIpInfo();
+
+
 }

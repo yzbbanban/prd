@@ -5,6 +5,7 @@ import com.pl.controller.BaseApi;
 import com.pl.service.IIpMessageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +27,17 @@ public class IpController extends BaseApi {
     @RequestMapping(value = "info", method = RequestMethod.GET)
     public ResultJson<String> getIpInfo(@RequestHeader("deviceId") String deviceId) {
 
+        //验证 token 是否为 deviceId 发送
+        String devId = getDeviceIdFrom();
+        if (!devId.equals(deviceId)) {
+            return ResultJson.createByErrorMsg("设备id 有误");
+        }
 
-
-        return null;
+        String ip = ipMessageService.getIp(deviceId);
+        if (StringUtils.isNotBlank(ip)) {
+            return ResultJson.createBySuccess(ip);
+        }
+        return ResultJson.createByErrorMsg("获取失败");
     }
 
 

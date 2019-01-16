@@ -4,6 +4,7 @@ import com.pl.domain.dto.PageParamDTO;
 import com.pl.domain.vo.IpMessageDTO;
 import com.pl.domain.vo.IpMessageUpdateDTO;
 import com.pl.domain.vo.IpMessageVO;
+import com.pl.domain.vo.IpRecordVO;
 
 import java.util.List;
 
@@ -42,4 +43,15 @@ public interface IIpMessageService {
      * @return true 成功
      */
     boolean updateIp(IpMessageUpdateDTO updateDTO);
+
+    /**
+     * 获取 ip
+     *
+     * @param deviceId 设备 id
+     * @return ip
+     */
+    String getIp(String deviceId);
+
+
+
 }
