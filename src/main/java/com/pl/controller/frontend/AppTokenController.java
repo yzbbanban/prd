@@ -22,11 +22,11 @@ public class AppTokenController extends BaseApi {
 
     @ApiOperation(value = "获取 app token")
     @RequestMapping(value = "info", method = RequestMethod.GET)
-    public ResultJson<String> getAppToken(@RequestHeader("from") String from) {
-        if (StringUtils.isBlank(from)) {
+    public ResultJson<String> getAppToken(@RequestHeader("deviceId") String deviceId) {
+        if (StringUtils.isBlank(deviceId)) {
             return ResultJson.createByErrorMsg("无设备信息");
         }
-        return ResultJson.createBySuccess(getToken(from));
+        return ResultJson.createBySuccess(getToken(deviceId));
 
     }
 

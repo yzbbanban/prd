@@ -20,11 +20,11 @@ public class TokenController extends BaseApi {
 
     @ApiOperation(value = "获取 manage token")
     @RequestMapping(value = "info", method = RequestMethod.GET)
-    public ResultJson<String> getAppToken(@RequestHeader("from") String from) {
-        if (StringUtils.isBlank(from)) {
-            return ResultJson.createByErrorMsg("无设备信息");
+    public ResultJson<String> getAppToken(@RequestHeader("ip") String ip) {
+        if (StringUtils.isBlank(ip)) {
+            return ResultJson.createByErrorMsg("无ip信息");
         }
-        return ResultJson.createBySuccess(getToken(from));
+        return ResultJson.createBySuccess(getToken(ip));
 
     }
 
