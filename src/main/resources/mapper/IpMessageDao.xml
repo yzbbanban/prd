@@ -26,6 +26,7 @@
         SELECT
         <include refid="baseResult"></include>
         FROM ip_message
+        and status=1
         ORDER BY `count`
         Limit 1
     </select>
