@@ -26,7 +26,6 @@ public class IpController extends BaseApi {
     @RequestMapping(value = "info", method = RequestMethod.GET)
     public ResultJson<String> getIpInfo(@RequestHeader("deviceId") String deviceId) {
 
-
         return null;
     }
 
