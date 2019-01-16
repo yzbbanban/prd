@@ -8,9 +8,11 @@ import com.pl.domain.dto.PageParamDTO;
 public class PageParamUtil {
 
     public static <T extends PageParamDTO> PageParamDTO setPageParam(T pageParam) {
-        if (pageParam == null) {
+        if (pageParam == null||pageParam.getPageNo()==null) {
             try {
                 pageParam = (T) PageParamDTO.class.newInstance();
+                pageParam.setPageNo(0);
+                pageParam.setPageSize(100);
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
