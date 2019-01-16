@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("v1/app/version")
 @Api(tags = {"app 版本资源api"})
-public class VersionManageController {
+public class VersionController {
     @Autowired
     private IVersionRecordService iVersionRecordService;
 
