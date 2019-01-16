@@ -12,6 +12,8 @@ import com.pl.domain.vo.IpMessageVO;
 import com.pl.domain.vo.IpRecordVO;
 import com.pl.service.IIpMessageService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ import java.util.List;
  */
 @Service
 public class IpMessageServiceImpl implements IIpMessageService {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private IpMessageDao ipMessageDao;
@@ -58,7 +62,12 @@ public class IpMessageServiceImpl implements IIpMessageService {
      */
     @Override
     public boolean addIp(IpMessageDTO messageDTO) {
-        return ipMessageDao.addIp(messageDTO) > 0;
+        try {
+            return ipMessageDao.addIp(messageDTO) > 0;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -98,10 +107,17 @@ public class IpMessageServiceImpl implements IIpMessageService {
         ipRecordDTO.setDeviceId(deviceId);
         ipRecordDTO.setIpId(ipVO.getId());
         ipRecordDTO.setRemark("");
-        int row = ipRecordDao.addIpRecord(ipRecordDTO);
-        if (row > 0) {
-            return ipVO.getIp();
+        try {
+
+            int row = ipRecordDao.addIpRecord(ipRecordDTO);
+            if (row > 0) {
+                return ipVO.getIp();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+
         return null;
     }
 
