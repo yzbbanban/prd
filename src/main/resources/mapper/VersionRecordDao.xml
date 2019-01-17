@@ -40,8 +40,8 @@
             createTime
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
-            <if test="ip != null">
-                #{ip,jdbcType=VERCHAR},
+            <if test="version != null">
+                #{version},
             </if>
             <if test="remark != null">
                 #{remark},
