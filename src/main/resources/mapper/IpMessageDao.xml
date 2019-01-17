@@ -22,6 +22,15 @@
         FROM ip_message
     </select>
 
+    <select id="getMinCountIpInfo" resultType="com.pl.domain.vo.IpMessageVO">
+        SELECT
+        <include refid="baseResult"></include>
+        FROM ip_message
+        and status=1
+        ORDER BY `count`
+        Limit 1
+    </select>
+
     <insert id="addIp">
         INSERT INTO ip_message
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -38,10 +47,10 @@
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="ip != null">
-                #{ip,jdbcType=VERCHAR},
+                #{ip},
             </if>
             <if test="remark != null">
-                #{remark,jdbcType=VERCHAR},
+                #{remark},
             </if>
             unix_timestamp(NOW()),
             unix_timestamp(NOW()),

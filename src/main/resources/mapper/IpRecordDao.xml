@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pl.dao.IpRecordDao">
+
+    <sql id="baseResult">
+        id,deviceId,ipId,remark,address,createTime,updateTime
+    </sql>
+
+    <select id="listIpRecordMessage" resultType="com.pl.domain.vo.IpRecordVO">
+        SELECT
+        <include refid="baseResult"></include>
+        FROM ip_record
+        ORDER BY updateTime DESC
+        WHERE ipId=#{id}
+        Limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="integer">
+        SELECT
+        count(1)
+        FROM ip_record
+    </select>
+
+    <select id="getIpRecord" resultType="com.pl.domain.vo.IpMessageVO">
+        SELECT
+          im.id,ir.deviceId,im.ip
+        FROM ip_record ir INNER JOIN ip_message im ON ir.ipId=im.id
+        where ir.deviceId=#{deviceId}
+        and im.status=1
+    </select>
+
+    <insert id="addIpRecord">
+        INSERT INTO ip_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ipId != null">
+                ipId,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="deviceId != null">
+                deviceId,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            createTime,
+            updateTime,
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="ipId != null">
+                #{ipId},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            unix_timestamp(NOW()),
+            unix_timestamp(NOW()),
+        </trim>
+    </insert>
+
+    <update id="updateIpRecord">
+        UPDATE ip_record
+        SET
+        <trim suffixOverrides=",">
+            <if test="ipId != null">
+                `ipId` = #{ipId},
+            </if>
+            <if test="deviceId != null">
+                `deviceId` = #{deviceId},
+            </if>
+            <if test="address != null">
+                `address` = #{address},
+            </if>
+            <if test="remark != null">
+                `remark` = #{remark},
+            </if>
+            `updateTime` = unix_timestamp(NOW()),
+        </trim>
+        WHERE
+        `id` = #{id}
+    </update>
+
+
+</mapper>

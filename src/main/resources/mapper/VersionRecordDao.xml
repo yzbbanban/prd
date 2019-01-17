@@ -40,17 +40,17 @@
             createTime
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
-            <if test="version != null">
-                #{version,jdbcType=VERCHAR},
+            <if test="ip != null">
+                #{ip,jdbcType=VERCHAR},
             </if>
             <if test="remark != null">
-                #{remark,jdbcType=VERCHAR},
+                #{remark},
             </if>
             <if test="url != null">
-                #{url,jdbcType=VERCHAR},
+                #{url},
             </if>
             <if test="type != null">
-                #{type,jdbcType=INTEGER},
+                #{type},
             </if>
             unix_timestamp(NOW())
         </trim>

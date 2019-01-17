@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : utf-8
 
- Date: 01/16/2019 01:48:14 AM
+ Date: 01/17/2019 00:04:27 AM
 */
 
 SET NAMES utf8;
@@ -44,14 +44,38 @@ CREATE TABLE `ip_message` (
   `createTime` bigint(20) DEFAULT NULL,
   `updateTime` bigint(20) DEFAULT NULL,
   `status` bit(1) DEFAULT NULL COMMENT '0 不可用，1可用',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `INDEX_IP` (`ip`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 --  Records of `ip_message`
 -- ----------------------------
 BEGIN;
-INSERT INTO `ip_message` VALUES ('1', '192.168.1.117', '0', '这是啥', '1547568978', '1547572304', b'0'), ('2', '123.213.43.55', '0', 'dgnrtj', '1547568978', '1547568978', b'0'), ('3', '192.168.1.123', '0', '1213', '1547570132', '1547570132', b'1'), ('4', '192.31.34.12', '0', '撒手', '1547570293', '1547570293', b'1'), ('5', '192.31.22.14', '0', '动动我', '1547570335', '1547570335', b'1'), ('6', '142.55.65.81', '0', '阿威锋网', '1547570358', '1547570358', b'1');
+INSERT INTO `ip_message` VALUES ('1', '192.168.1.117', '32', '这是啥', '1547568978', '1547572304', b'0'), ('2', '123.123.123.123', '0', '123', '1547568978', '1547651780', b'1'), ('3', '192.168.1.123', '7', '1213', '1547570132', '1547570132', b'1'), ('4', '192.31.34.12', '23', '撒手', '1547570293', '1547570293', b'1'), ('5', '192.31.22.14', '20', '动动我', '1547570335', '1547570335', b'1'), ('6', '142.55.65.81', '13', '阿威锋网', '1547570358', '1547570358', b'1'), ('7', '128.2.12.31', '0', 'afwewfae', '1547651495', '1547651495', b'1'), ('8', '121.23.123.43', '0', '4342313', '1547651967', '1547651967', b'1');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `ip_record`
+-- ----------------------------
+DROP TABLE IF EXISTS `ip_record`;
+CREATE TABLE `ip_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deviceId` varchar(100) DEFAULT NULL COMMENT 'app 设备 id',
+  `ipId` int(11) DEFAULT NULL COMMENT '分配的 ip',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `address` varchar(255) DEFAULT NULL COMMENT '地址信息',
+  `createTime` bigint(20) DEFAULT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `INDEX_IP` (`deviceId`,`ipId`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `ip_record`
+-- ----------------------------
+BEGIN;
+INSERT INTO `ip_record` VALUES ('1', '123', '1', 'mfoied', 'nfseof', '1547572304', '1547572304'), ('2', '21ojawejdoawe', '3', '', '', '1547648680', '1547648680');
 COMMIT;
 
 -- ----------------------------
@@ -182,8 +206,15 @@ CREATE TABLE `version_record` (
   `remark` varchar(200) DEFAULT NULL COMMENT '备注',
   `url` varchar(255) DEFAULT NULL COMMENT '下载路径',
   `createTime` bigint(20) DEFAULT NULL COMMENT '创建时间',
-  `type` bit(1) DEFAULT NULL COMMENT '终端类型：android 1,ios 2',
+  `type` tinyint(1) DEFAULT NULL COMMENT '终端类型：android 1,ios 2',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `version_record`
+-- ----------------------------
+BEGIN;
+INSERT INTO `version_record` VALUES ('1', '1.0.0', 'fsfer', 'http://dwada', '1547572304', '1'), ('2', '1.0.1', 'ffwefa', 'http://dwada', '1547572304', '2'), ('3', '1.0.2', 'fwefwae', 'http://dwada', '1547572304', '1'), ('4', '1.0.2', 'grtdgr', 'http://dwada', '1547572304', '2'), ('5', '1.0.3', 'pkrtgpitm', 'http://www.360doc.com/content/13/0904/09/13084517_312092916.shtml', '1547653214', '2');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
