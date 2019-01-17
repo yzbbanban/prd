@@ -10,9 +10,9 @@
 
     <select id="listIpMessage" resultType="com.pl.domain.vo.IpMessageVO">
         SELECT
-        <include refid="baseResult"></include>
+         <include refid="baseResult"></include>
         FROM ip_message
-        ORDER BY updateTime DESC
+         ORDER BY updateTime DESC
         Limit #{pageNo},#{pageSize}
     </select>
 
@@ -24,11 +24,12 @@
 
     <select id="getMinCountIpInfo" resultType="com.pl.domain.vo.IpMessageVO">
         SELECT
-        <include refid="baseResult"></include>
+          <include refid="baseResult"></include>
         FROM ip_message
-        and status=1
+        WHERE
+          status=1
         ORDER BY `count`
-        Limit 1
+          Limit 1
     </select>
 
     <insert id="addIp">
