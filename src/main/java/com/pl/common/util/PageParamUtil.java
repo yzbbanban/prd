@@ -1,4 +1,4 @@
-package com.pl.common;
+package com.pl.common.util;
 
 import com.pl.domain.dto.PageParamDTO;
 

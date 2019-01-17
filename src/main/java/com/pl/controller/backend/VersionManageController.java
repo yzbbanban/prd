@@ -1,6 +1,6 @@
 package com.pl.controller.backend;
 
-import com.pl.common.PageParamUtil;
+import com.pl.common.util.PageParamUtil;
 import com.pl.common.ResultJson;
 import com.pl.common.ResultList;
 import com.pl.domain.dto.PageParamDTO;
