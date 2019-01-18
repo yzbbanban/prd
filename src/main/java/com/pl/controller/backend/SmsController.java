@@ -18,7 +18,8 @@ public class SmsController {
 
     @ApiOperation(value = "发送获取token短信")
     @PostMapping(value = "token")
-    public ResultJson<String> getTokenSms(SmsMessageDTO messageDTO) {
+    public ResultJson<String> getTokenSms() {
+        SmsMessageDTO messageDTO=new SmsMessageDTO();
         ISmsUtils sms = new SmsYpUtils();
         int codeLength = 4;
         String code = RandomUtils.generateMixNum(codeLength);
