@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("v1/manage/sms")
 @Api(tags = {"短信 manage资源api"})
@@ -18,13 +20,17 @@ public class SmsController {
 
     @ApiOperation(value = "发送获取token短信")
     @PostMapping(value = "token")
-    public ResultJson<String> getTokenSms() {
-        SmsMessageDTO messageDTO=new SmsMessageDTO();
+    public ResultJson<String> getTokenSms(SmsMessageDTO messageDTO, HttpSession session) {
         ISmsUtils sms = new SmsYpUtils();
         int codeLength = 4;
         String code = RandomUtils.generateMixNum(codeLength);
-        sms.sendSms(messageDTO.getPhoneNumber(), messageDTO.getCountryCode(), code, SmsYpUtils.SMS_YP);
-        return ResultJson.createBySuccess();
+        boolean result = sms.sendSms(messageDTO.getPhoneNumber(), messageDTO.getCountryCode(), code, SmsYpUtils.SMS_YP);
+        if (result) {
+            session.setAttribute(messageDTO.getCountryCode() + messageDTO.getPhoneNumber(), code);
+            session.setMaxInactiveInterval(20);
+            return ResultJson.createBySuccess();
+        }
+        return ResultJson.createByError();
     }
 
 }
