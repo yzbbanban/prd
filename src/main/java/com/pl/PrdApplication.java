@@ -3,6 +3,8 @@ package com.pl;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 
@@ -30,5 +32,6 @@ public class PrdApplication {
         factory.setMaxRequestSize("512000KB");
         return factory.createMultipartConfig();
     }
+
 }
 

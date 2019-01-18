@@ -1,6 +1,7 @@
 package com.pl.controller.backend;
 
 import com.pl.common.result.ResultJson;
+import com.pl.common.util.RandomUtils;
 import com.pl.controller.BaseApi;
 import com.pl.domain.dto.SmsMessageDTO;
 import io.swagger.annotations.Api;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  * Created by brander on 2019/1/15
@@ -33,6 +35,8 @@ public class TokenController extends BaseApi {
         String key = messageDTO.getCountryCode() + messageDTO.getPhoneNumber();
         String sessionCode = (String) session.getAttribute(key);
         if (code.equals(sessionCode)) {
+            session.setAttribute(messageDTO.getCountryCode() + messageDTO.getPhoneNumber(),
+                    "expire:" + UUID.randomUUID().toString());
             return ResultJson.createBySuccess(getToken(key));
         }
         return ResultJson.createByError();
