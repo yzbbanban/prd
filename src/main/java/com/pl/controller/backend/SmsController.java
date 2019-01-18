@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("v1/manage/sms")
-@Api(tags = {"文件 manage资源api"})
+@Api(tags = {"短信 manage资源api"})
 public class SmsController {
 
     @ApiOperation(value = "发送获取token短信")
@@ -22,7 +22,7 @@ public class SmsController {
         ISmsUtils sms = new SmsYpUtils();
         int codeLength = 4;
         String code = RandomUtils.generateMixNum(codeLength);
-        sms.sendSms(messageDTO.getCountryCode(), messageDTO.getPhoneNumber(), code, SmsYpUtils.SMS_YP);
+        sms.sendSms(messageDTO.getPhoneNumber(), messageDTO.getCountryCode(), code, SmsYpUtils.SMS_YP);
         return ResultJson.createBySuccess();
     }
 
