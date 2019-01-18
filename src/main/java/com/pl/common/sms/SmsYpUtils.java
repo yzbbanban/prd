@@ -22,76 +22,15 @@ public class SmsYpUtils implements SmsConfig, ISmsUtils {
     private final Logger logger = Logger.getLogger(SmsYpUtils.class);
 
     /**
-     * 用户修改支付密码
-     */
-    public static final String SMS_YP_USER_MODIFY_PAY_PWD = "2424582";
-    /**
-     * 用户修改登录密码
-     */
-    public static final String SMS_YP_USER_MODIFY_LOGIN_PWD = "2424586";
-    /**
-     * 用户设置支付密码
-     */
-    public static final String SMS_YP_USER_SET_PAY_PWD = "2424510";
-    /**
-     * 用户设置登录密码
-     */
-    public static final String SMS_YP_USER_SET_LOGIN_PWD = "2424516";
-    /**
-     * 用户正在登录
-     */
-    public static final String SMS_YP_USER_LOGIN = "2424568";
-    /**
-     * 用户正在注册
-     */
-    public static final String SMS_YP_USER_REGISTER = "2424570";
-    /**
-     * 用户找回支付密码
-     */
-    public static final String SMS_YP_USER_GET_PAY_PASSWORD = "2424518";
-    /**
-     * 用户找回登录密码
-     */
-    public static final String SMS_YP_USER_GET_LOGIN_PASSWORD = "2424522";
-
-    /**
-     * 用户异常登录 此为通知消息
-     */
-    public static final String SMS_YP_USER_ERROR_ADDRESS = "2424500";
-
-    /**
-     * 管理员正在登录
-     */
-    public static final String SMS_YP_SYS_LOGIN = "2424566";
-    /**
-     * 管理员修改登录密码
-     */
-    public static final String SMS_YP_SYS_MODIFY_LOGIN_PWD = "2424564";
-
-    /**
-     * 用户密码错误过多，异常提醒
-     */
-    public static final String SMS_YP_SYS_LOGIN_FAILED_WARN = "2523574";
-
-    /**
      * 通用验证码
      */
-    public static final String SMS_YP = "2423482";
+    public static final String SMS_YP = "2711532";
 
     /**
      * 国际验证码
      */
     public static final String SMS_INT = "2556214";
 
-    /**
-     * 删除用户
-     */
-    public static final String SMS_YP_DELETE_USER = "2625490";
-
-    /**
-     * 异地登录提醒
-     */
-    public static final String SMS_YP_REMOTE_LOGIN = "2626028";
 
     /**
      * 编码格式。发送编码格式统一用UTF-8

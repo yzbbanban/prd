@@ -10,17 +10,17 @@ public interface SmsConfig {
     /**
      * ali默认值
      */
-    String ACCESSKEY_ID = "LTAInTXkwE8Rqc4g";
-    String ACCESSKEY_SECRET = "hOmQcdHqBUSxmsgn0DCGFpqqb8qJPm";
+    String ACCESSKEY_ID = "";
+    String ACCESSKEY_SECRET = "";
     /**
      * 云片默认值
      */
-    String API_KEY = "0031ea76a2471d52330b00a102439c6f";
+    String API_KEY = "2c10b52be12faea6a03c54687307cd3b";
 
     /**
      * 签名
      */
-    String SMS_SIGN_NAME = "btw";
+    String SMS_SIGN_NAME = "pl";
 
 
 }

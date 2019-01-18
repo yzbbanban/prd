@@ -18,11 +18,11 @@ public class SmsController {
 
     @ApiOperation(value = "发送获取token短信")
     @PostMapping(value = "token")
-    public ResultJson<String> getTokenSms(SmsMessageDTO messageDTO){
-        ISmsUtils sms=new SmsYpUtils();
+    public ResultJson<String> getTokenSms(SmsMessageDTO messageDTO) {
+        ISmsUtils sms = new SmsYpUtils();
         int codeLength = 4;
         String code = RandomUtils.generateMixNum(codeLength);
-        sms.sendSms(messageDTO.getCountryCode(),messageDTO.getPhoneNumber(),code,"");
+        sms.sendSms(messageDTO.getCountryCode(), messageDTO.getPhoneNumber(), code, SmsYpUtils.SMS_YP);
         return ResultJson.createBySuccess();
     }
 
