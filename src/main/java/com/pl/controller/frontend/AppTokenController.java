@@ -1,8 +1,6 @@
 package com.pl.controller.frontend;
 
-import com.pl.common.ResultJson;
-import com.pl.common.ResultStatus;
-import com.pl.common.security.JwtHelper;
+import com.pl.common.result.ResultJson;
 import com.pl.controller.BaseApi;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

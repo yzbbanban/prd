@@ -1,4 +1,4 @@
-package com.pl.common;
+package com.pl.common.result;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.pl.controller;
 
-import com.pl.common.ResultJson;
+import com.pl.common.result.ResultJson;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

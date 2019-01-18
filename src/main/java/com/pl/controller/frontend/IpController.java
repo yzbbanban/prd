@@ -1,6 +1,6 @@
 package com.pl.controller.frontend;
 
-import com.pl.common.ResultJson;
+import com.pl.common.result.ResultJson;
 import com.pl.controller.BaseApi;
 import com.pl.service.IIpMessageService;
 import io.swagger.annotations.Api;

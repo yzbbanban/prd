@@ -1,9 +1,10 @@
 package com.pl.controller.backend;
 
-import com.pl.common.ResultJson;
+import com.pl.common.result.ResultJson;
 import com.pl.common.util.PropertiesUtil;
 import com.pl.service.IFileService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class FileController {
     @Autowired
     private IFileService iFileService;
 
-
+    @ApiOperation(value = "android app上传")
     @PostMapping(value = "android/upload")
     public ResultJson uploadAndroid(@RequestParam(value = "uploadFile", required = false) MultipartFile file,
                                     HttpServletRequest request) {

@@ -1,4 +1,4 @@
-package com.pl.common;
+package com.pl.common.result;
 
 /**
  * Created by brander on 2019/1/12

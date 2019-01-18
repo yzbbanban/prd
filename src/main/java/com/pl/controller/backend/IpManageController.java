@@ -1,8 +1,8 @@
 package com.pl.controller.backend;
 
 import com.pl.common.util.PageParamUtil;
-import com.pl.common.ResultJson;
-import com.pl.common.ResultList;
+import com.pl.common.result.ResultJson;
+import com.pl.common.result.ResultList;
 import com.pl.controller.BaseApi;
 import com.pl.domain.dto.IpRecordPageParamDTO;
 import com.pl.domain.dto.IpRecordUpdateDTO;
