@@ -55,7 +55,7 @@ public class IpManageController extends BaseApi {
     }
 
     @ApiOperation(value = "添加 ip")
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultJson<String> addIp(IpMessageDTO messageDTO) {
         if (ObjectUtils.isEmpty(messageDTO)) {
             return ResultJson.createByErrorMsg("参数错误");
@@ -68,7 +68,7 @@ public class IpManageController extends BaseApi {
     }
 
     @ApiOperation(value = "更新 ip 信息")
-    @RequestMapping(value = "update", method = RequestMethod.GET)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     public ResultJson<String> updateIp(IpMessageUpdateDTO updateDTO) {
         if (updateDTO == null || updateDTO.getId() == null || updateDTO.getId() <= 0) {
             return ResultJson.createByErrorMsg("参数错误");
@@ -82,7 +82,7 @@ public class IpManageController extends BaseApi {
 
 
     @ApiOperation(value = "更新 ip记录 信息")
-    @RequestMapping(value = "/record/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/record/update", method = RequestMethod.POST)
     public ResultJson<String> updateIpRecord(IpRecordUpdateDTO updateDTO) {
         if (updateDTO == null || updateDTO.getId() == null || updateDTO.getId() <= 0) {
             return ResultJson.createByErrorMsg("参数错误");

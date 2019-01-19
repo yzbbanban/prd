@@ -51,7 +51,7 @@ public class VersionManageController {
 
 
     @ApiOperation(value = "添加 版本信息")
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultJson<String> addVersion(VersionRecordDTO dto) {
         if (ObjectUtils.isEmpty(dto)) {
             return ResultJson.createByErrorMsg("参数错误");
