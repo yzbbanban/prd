@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
@@ -25,15 +26,19 @@ public class TokenController extends BaseApi {
 
     @ApiOperation(value = "获取 manage token")
     @RequestMapping(value = "info", method = RequestMethod.GET)
-    public ResultJson<String> getAppToken(SmsMessageDTO messageDTO, String code, HttpSession session) {
+    public ResultJson<String> getAppToken(SmsMessageDTO messageDTO, String code, HttpServletRequest request) {
         if (ObjectUtils.isEmpty(messageDTO)) {
+            log.info("獲取 token 參數{}", messageDTO);
             return ResultJson.createByErrorMsg("无领用人信息");
         }
         if (StringUtils.isEmpty(code)) {
             return ResultJson.createByErrorMsg("验证码错误");
         }
         String key = messageDTO.getCountryCode() + messageDTO.getPhoneNumber();
+        log.info("獲取 key 參數{}", key);
+        HttpSession session = request.getSession();
         String sessionCode = (String) session.getAttribute(key);
+        log.info("獲取 sessionCode 參數{}", sessionCode);
         if (code.equals(sessionCode)) {
             session.setAttribute(messageDTO.getCountryCode() + messageDTO.getPhoneNumber(),
                     "expire:" + UUID.randomUUID().toString());

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -21,13 +22,13 @@ public class SmsController extends BaseApi {
 
     @ApiOperation(value = "发送获取token短信")
     @PostMapping(value = "token")
-    public ResultJson<String> getTokenSms(SmsMessageDTO messageDTO, HttpSession session) {
+    public ResultJson<String> getTokenSms(SmsMessageDTO messageDTO, HttpServletRequest request) {
         ISmsUtils sms = new SmsYpUtils();
         int codeLength = 4;
         String code = RandomUtils.generateMixNum(codeLength);
         boolean result = sms.sendSms(messageDTO.getPhoneNumber(), messageDTO.getCountryCode(), code, SmsYpUtils.SMS_YP);
         if (result) {
-            session.setAttribute(messageDTO.getCountryCode() + messageDTO.getPhoneNumber(), code);
+            request.getSession().setAttribute(messageDTO.getCountryCode() + messageDTO.getPhoneNumber(), code);
             return ResultJson.createBySuccess();
         }
         return ResultJson.createByError();
