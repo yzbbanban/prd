@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pl.dao.VersionRecordDao">
+
+    <sql id="baseResult">
+        id,version,remark,url,createTime,`type`
+    </sql>
+
+    <select id="listVersionMessage" resultType="com.pl.domain.vo.VersionRecordVO">
+        SELECT
+        <include refid="baseResult"></include>
+        FROM version_record
+        ORDER BY createTime DESC
+        Limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="integer">
+        SELECT
+        count(1)
+        FROM version_record
+    </select>
+
+    <insert id="addVersion">
+        INSERT INTO version_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="version != null">
+                version,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            createTime
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="version != null">
+                #{version},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="url != null">
+                #{url},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            unix_timestamp(NOW())
+        </trim>
+    </insert>
+
+    <select id="getVersionByType" resultType="com.pl.domain.vo.VersionRecordVO">
+        SELECT
+        <include refid="baseResult"></include>
+        FROM version_record
+        WHERE type=#{type}
+        ORDER BY createTime DESC
+        Limit 1
+    </select>
+</mapper>

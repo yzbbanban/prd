@@ -15,15 +15,15 @@ import java.util.concurrent.Callable;
 /**
  * Created by brander on 2018/3/1
  */
-@RestController
-@RequestMapping("/superAdmin")
+//@RestController
+//@RequestMapping("/superAdmin")
 public class AreaController {
 
     private Logger log = LoggerFactory.getLogger(AreaController.class);
     @Autowired
     private IAreaService iAreaService;
 
-    @RequestMapping(value = "getAreaList", method = RequestMethod.GET)
+    //    @RequestMapping(value = "getAreaList", method = RequestMethod.GET)
     public Map<String, Object> getAreaList() {
         List<Area> areas = iAreaService.getAreaList();
         Map<String, Object> map = new HashMap<>();
@@ -31,7 +31,7 @@ public class AreaController {
         return map;
     }
 
-    @RequestMapping(value = "getAreaById", method = RequestMethod.GET)
+    //    @RequestMapping(value = "getAreaById", method = RequestMethod.GET)
     public Map<String, Object> getAreaById(int areaId) {
         Area area = iAreaService.getAreaById(areaId);
         Map<String, Object> map = new HashMap<>();
@@ -39,28 +39,28 @@ public class AreaController {
         return map;
     }
 
-    @RequestMapping(value = "addAreaById", method = RequestMethod.POST)
+    //    @RequestMapping(value = "addAreaById", method = RequestMethod.POST)
     public Map<String, Object> addAreaById(@RequestBody Area area) {
         Map<String, Object> map = new HashMap<>();
         map.put("success", iAreaService.addAreaById(area));
         return map;
     }
 
-    @RequestMapping(value = "modifyArea", method = RequestMethod.POST)
+    //    @RequestMapping(value = "modifyArea", method = RequestMethod.POST)
     public Map<String, Object> modifyArea(@RequestBody Area area) {
         Map<String, Object> map = new HashMap<>();
         map.put("success", iAreaService.modifyArea(area));
         return map;
     }
 
-    @RequestMapping(value = "deleteAreaById", method = RequestMethod.POST)
+    //    @RequestMapping(value = "deleteAreaById", method = RequestMethod.POST)
     public Map<String, Object> deleteAreaById(int areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("success", iAreaService.deleteAreaById(areaId));
         return map;
     }
 
-    @GetMapping("/order")
+    //    @GetMapping("/order")
     public Callable<String> order() throws Exception {
 
         log.info("主线程开始");
