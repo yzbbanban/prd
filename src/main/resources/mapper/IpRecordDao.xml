@@ -12,8 +12,8 @@
         SELECT
         <include refid="baseResult"></include>
         FROM ip_record
-        ORDER BY updateTime DESC
         WHERE ipId=#{id}
+        ORDER BY updateTime DESC
         Limit #{pageNo},#{pageSize}
     </select>
 
