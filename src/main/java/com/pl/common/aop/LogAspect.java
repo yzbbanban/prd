@@ -33,7 +33,7 @@ public class LogAspect {
     /**
      * 申明一个切点 里面是 execution表达式
      */
-    @Pointcut("execution(* com.yobtc.coinpay.api..*.*(..))")
+    @Pointcut("execution(* com.pl.controller..*.*(..))")
     private void controllerAspect() {
     }
 

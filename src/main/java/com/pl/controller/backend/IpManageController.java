@@ -106,12 +106,12 @@ public class IpManageController extends BaseApi {
 
         int count = ipMessageService.getIpRecordCount(pageParamDTO.getId());
         if (count <= 0) {
-            return ResultJson.createByErrorMsg("没有数据");
+            return ResultJson.createBySuccessMsg("没有数据");
         }
 
-        List<IpRecordVO> list = ipMessageService.getIpRecordList(pageParamDTO);
+        List<IpRecordVO> list = ipMessageService.getIpRecordList((IpRecordPageParamDTO) PageParamUtil.setPageParam(pageParamDTO));
         if (CollectionUtils.isEmpty(list)) {
-            return ResultJson.createByErrorMsg("没有数据");
+            return ResultJson.createBySuccessMsg("没有数据");
         }
         resultList.setCount(count);
         resultList.setDataList(list);
