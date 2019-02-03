@@ -12,12 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import static com.pl.common.constant.MessageConstant.SMS_REPEAT;
-import static com.pl.common.constant.MessageConstant.SYSTEM_SMS_LOGIN_CODE_PHONE;
-import static com.pl.common.constant.MessageConstant.SYSTEM_SMS_MODIFY_CODE_PHONE;
+import static com.pl.common.constant.MessageConstant.*;
 
 @RestController
 @RequestMapping("v1/manage/sms")
