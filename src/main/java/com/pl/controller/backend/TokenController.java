@@ -46,6 +46,8 @@ public class TokenController extends BaseApi {
                 messageDTO.getPhoneNumber())) {
             return ResultJson.createByError();
         }
+        //登录成功后删除验证码
+        localCache.removeCache(MessageConstant.SYSTEM_SMS_LOGIN_CODE_PHONE + key);
         return ResultJson.createBySuccess(getToken(key));
 
     }
