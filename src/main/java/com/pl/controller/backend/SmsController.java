@@ -25,12 +25,6 @@ public class SmsController extends BaseApi {
         return getStringResultJson(messageDTO, SYSTEM_SMS_LOGIN_CODE_PHONE + messageDTO.getCountryCode() + messageDTO.getPhoneNumber());
     }
 
-    @ApiOperation(value = "发送更改密码短信")
-    @PostMapping(value = "modify")
-    public ResultJson<String> getModifySms(SmsMessageDTO messageDTO) {
-        return getStringResultJson(messageDTO, SYSTEM_SMS_MODIFY_CODE_PHONE + messageDTO.getCountryCode() + messageDTO.getPhoneNumber());
-    }
-
     /**
      * 发送短信
      *
