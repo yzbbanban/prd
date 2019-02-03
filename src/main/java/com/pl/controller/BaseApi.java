@@ -23,7 +23,6 @@ import static com.pl.common.constant.MessageConstant.SMS_REPEAT;
  */
 public class BaseApi {
 
-    public static final String JWT_SECRET = JwtConstant.JWT_SECRET;
     protected Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -36,7 +35,7 @@ public class BaseApi {
      * @return id
      */
     protected String getToken(String userId) {
-        String token = JwtHelper.createJWT("userid", JWT_SECRET, userId, 3600000L);
+        String token = JwtHelper.createJWT("userid", JwtConstant.JWT_SECRET, userId, 3600000L);
         return token;
     }
 
@@ -52,7 +51,7 @@ public class BaseApi {
         HttpServletRequest request = requestAttributes.getRequest();
         try {
             String token = request.getHeader("Authorization");
-            Claims claims = JwtHelper.parseJWT(token, JWT_SECRET);
+            Claims claims = JwtHelper.parseJWT(token, JwtConstant.JWT_SECRET);
             String userId = "userid";
             String id = String.valueOf(claims.get(userId));
             return id;
@@ -71,8 +70,8 @@ public class BaseApi {
      * @param mobile                  手机号
      * @return 是否正确
      */
-    protected boolean getCode(ResultJson resultJson, String systemSmsLoginCodePhone, String code, String mobile) {
-        String smsCode = localCache.getCache(systemSmsLoginCodePhone + "86" + mobile);
+    protected boolean getCode(ResultJson resultJson, String systemSmsLoginCodePhone, String code, String countryCode, String mobile) {
+        String smsCode = localCache.getCache(systemSmsLoginCodePhone + countryCode + mobile);
         if (code.equals(smsCode)) {
             resultJson.setStatus(ResultStatus.OK);
             return false;

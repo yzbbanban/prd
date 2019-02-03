@@ -1,5 +1,6 @@
 package com.pl.controller.backend;
 
+import com.pl.common.constant.MessageConstant;
 import com.pl.common.result.ResultJson;
 import com.pl.common.util.RandomUtils;
 import com.pl.controller.BaseApi;
@@ -26,7 +27,9 @@ public class TokenController extends BaseApi {
 
     @ApiOperation(value = "获取 manage token")
     @RequestMapping(value = "info", method = RequestMethod.GET)
-    public ResultJson<String> getAppToken(SmsMessageDTO messageDTO, String code, HttpServletRequest request) {
+    public ResultJson<String> getAppToken(SmsMessageDTO messageDTO, String code) {
+        ResultJson resultJson = new ResultJson();
+
         if (ObjectUtils.isEmpty(messageDTO)) {
             log.info("獲取 token 參數{}", messageDTO);
             return ResultJson.createByErrorMsg("无领用人信息");
@@ -34,16 +37,16 @@ public class TokenController extends BaseApi {
         if (StringUtils.isEmpty(code)) {
             return ResultJson.createByErrorMsg("验证码错误");
         }
+
         String key = messageDTO.getCountryCode() + messageDTO.getPhoneNumber();
-        log.info("獲取 key 參數{}", key);
-        HttpSession session = request.getSession();
-        String sessionCode = (String) session.getAttribute(key);
-        log.info("獲取 sessionCode 參數{}", sessionCode);
-        if (code.equals(sessionCode)) {
-            session.setAttribute(messageDTO.getCountryCode() + messageDTO.getPhoneNumber(),
-                    "expire:" + UUID.randomUUID().toString());
+
+        //验证验证码
+        if (getCode(resultJson, MessageConstant.SYSTEM_SMS_LOGIN_CODE_PHONE,
+                code, messageDTO.getCountryCode(),
+                messageDTO.getPhoneNumber())) {
             return ResultJson.createBySuccess(getToken(key));
         }
+
         return ResultJson.createByError();
     }
 
