@@ -1,5 +1,6 @@
 package com.pl.common.shiro;
 
+import com.pl.common.security.JwtConstant;
 import com.pl.common.security.JwtHelper;
 import com.pl.controller.BaseApi;
 import io.jsonwebtoken.Claims;
@@ -50,7 +51,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         getSubject(request, response).login(token);
 
         //没有异常则将用户id写入request
-        Claims claims = JwtHelper.parseJWT(authorization, BaseApi.JWT_SECRET);
+        Claims claims = JwtHelper.parseJWT(authorization, JwtConstant.JWT_SECRET);
         String userId = "userid";
         //如果id为空则抛出去
         if (claims.get(userId) == null) {

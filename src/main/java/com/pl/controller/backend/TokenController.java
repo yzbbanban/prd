@@ -44,10 +44,10 @@ public class TokenController extends BaseApi {
         if (getCode(resultJson, MessageConstant.SYSTEM_SMS_LOGIN_CODE_PHONE,
                 code, messageDTO.getCountryCode(),
                 messageDTO.getPhoneNumber())) {
-            return ResultJson.createBySuccess(getToken(key));
+            return ResultJson.createByError();
         }
+        return ResultJson.createBySuccess(getToken(key));
 
-        return ResultJson.createByError();
     }
 
 }

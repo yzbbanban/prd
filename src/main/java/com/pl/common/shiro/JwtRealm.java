@@ -1,5 +1,6 @@
 package com.pl.common.shiro;
 
+import com.pl.common.security.JwtConstant;
 import com.pl.common.security.JwtHelper;
 import com.pl.controller.BaseApi;
 import io.jsonwebtoken.Claims;
@@ -53,7 +54,7 @@ public class JwtRealm extends AuthorizingRealm {
         String tokenInvalid = "token invalid";
         int len = 7;
         if (StringUtils.isNotBlank(token) && token.length() >= len) {
-            Claims claims = JwtHelper.parseJWT(token, BaseApi.JWT_SECRET);
+            Claims claims = JwtHelper.parseJWT(token, JwtConstant.JWT_SECRET);
             if (claims != null && claims.get(userId) != null) {
                 return new SimpleAuthenticationInfo(token, token, jwtRealm);
             }
