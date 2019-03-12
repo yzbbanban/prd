@@ -8,7 +8,7 @@ public enum ResultStatus {
 
     ERROR(500, "ERROR"),
 
-    NO_AUTH(500, "NO AUTH");
+    NO_AUTH(401, "NO AUTH");
     private Integer code;
 
     private String message;

@@ -23,6 +23,7 @@ public class FileServiceImpl implements IFileService {
      * @param path 创建好的文件名
      * @return 路径
      */
+    @Override
     public String upload(MultipartFile file, String path) {
         //原文件名
         String fileName = file.getOriginalFilename();
@@ -35,7 +36,8 @@ public class FileServiceImpl implements IFileService {
         File fileDir = new File(path);
         //创建目录 先存到 tomcat 中
         if (!fileDir.exists()) {
-            fileDir.setWritable(true);//tomcat 写权限
+            //tomcat 写权限
+            fileDir.setWritable(true);
             fileDir.mkdirs();
         }
         //创建路径

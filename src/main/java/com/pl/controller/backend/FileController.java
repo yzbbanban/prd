@@ -31,7 +31,12 @@ public class FileController {
                                     HttpServletRequest request) {
 
         //上传保存图片
-        String path = request.getSession().getServletContext().getRealPath("upload");
+        String path ="app/";
+        try {
+            path = request.getSession().getServletContext().getRealPath("upload");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String targetFileName = iFileService.upload(file, path);
         if (StringUtils.isBlank(targetFileName)) {
             return ResultJson.createByErrorMsg("上传失败");
