@@ -31,7 +31,7 @@ public class FileController {
                                     HttpServletRequest request) {
 
         //上传保存图片
-        String path ="app/";
+        String path ="";
         try {
             path = request.getSession().getServletContext().getRealPath("upload");
         } catch (Exception e) {
