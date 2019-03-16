@@ -2,6 +2,7 @@ package com.pl.controller.backend;
 
 import com.pl.common.result.ResultJson;
 import com.pl.common.util.PropertiesUtil;
+import com.pl.controller.BaseApi;
 import com.pl.service.IFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,7 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("v1/manage/file")
 @Api(tags = {"文件 manage资源api"})
-public class FileController {
+public class FileController extends BaseApi {
 
     @Autowired
     private IFileService iFileService;
@@ -31,9 +32,9 @@ public class FileController {
                                     HttpServletRequest request) {
 
         //上传保存图片
-        String path ="";
+        String path = "";
         try {
-            path = request.getSession().getServletContext().getRealPath("upload");
+            path = getPath();
         } catch (Exception e) {
             e.printStackTrace();
         }

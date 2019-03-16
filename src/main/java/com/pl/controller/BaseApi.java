@@ -62,6 +62,23 @@ public class BaseApi {
     }
 
     /**
+     * 从token中获取userid
+     *
+     * @return id
+     */
+    protected String getPath() {
+
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        try {
+            return (String) request.getAttribute("path");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * 获取验证码是否正确
      *
      * @param resultJson              接口返回值
